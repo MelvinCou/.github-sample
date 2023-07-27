@@ -53,4 +53,4 @@ autolabeler:
       - '^Fix.+'
   - label: 'enhancement'
     branch:
-      - '^\/feature\/.+'
+      - '/feature\/.+/'
