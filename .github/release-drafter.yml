@@ -45,12 +45,12 @@ autolabeler:
     files:
       - '*.md'
     branch:
-      - '^/docs{0,1}\/.+/'
+      - '/doc\/.+/'
   - label: 'bug'
     branch:
-      - '^\/fix\/.+'
+      - '/fix\/.+'
     title:
-      - '^Fix.+'
+      - 'Fix.+'
   - label: 'enhancement'
     branch:
       - '/feature\/.+/'
