@@ -49,8 +49,6 @@ autolabeler:
   - label: 'bug'
     branch:
       - '/fix\/.+/'
-    title:
-      - '/Fix.+/'
   - label: 'enhancement'
     branch:
       - '/feature\/.+/'
