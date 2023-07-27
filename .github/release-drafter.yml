@@ -39,3 +39,18 @@ version-resolver:
       - 'maintenance'
       - 'documentation'
   default: patch
+
+autolabeler:
+  - label: 'documentation'
+    files:
+      - '*.md'
+    branch:
+      - '^/docs{0,1}\/.+/'
+  - label: 'bug'
+    branch:
+      - '^\/fix\/.+'
+    title:
+      - '^Fix.+'
+  - label: 'enhancement'
+    branch:
+      - '^\/feature\/.+'
