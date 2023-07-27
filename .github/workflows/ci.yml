@@ -1,18 +1,16 @@
-# This workflow executes several linters on changed files based on languages used in your code base whenever
-# you push a code or open a pull request.
-#
-# You can adjust the behavior by modifying this file.
-# For more information, see:
-# https://github.com/github/super-linter
-name: Lint Code Base
+name: CI
 
 on:
   pull_request:
     branches: [ main ]
+
 jobs:
   run-lint:
     runs-on: ubuntu-latest
     steps:
+      - name: Labeler
+        uses: actions/labeler@v4.3.0
+
       - name: Checkout code
         uses: actions/checkout@v3
         with:
