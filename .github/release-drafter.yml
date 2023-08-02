@@ -57,6 +57,6 @@ autolabeler:
       - '.github/*'
   - label: 'configuration'
     files:
-      - '**.yaml'
+      - '*.yml'
       - '**.json'
       - '.env'
