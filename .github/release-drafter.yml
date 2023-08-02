@@ -54,9 +54,9 @@ autolabeler:
       - '/feature\/.+/'
   - label: 'github'
     files:
-      - '.github/*'
+      - '.github/**'
   - label: 'configuration'
     files:
-      - '*.yaml'
-      - '*.json'
+      - '*.yml'
+      - '**.json'
       - '.env'
