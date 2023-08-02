@@ -6,6 +6,7 @@ on:
 
 jobs:
   update-pr-labels:
+    name: Update pull request labels
     permissions:
       contents: read
       pull-requests: write
@@ -19,7 +20,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  run-lint:
+  lint:
+    name: Lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
