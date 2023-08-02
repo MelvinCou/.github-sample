@@ -60,4 +60,3 @@ autolabeler:
       - '*.yaml'
       - '*.json'
       - '.env'
-      
