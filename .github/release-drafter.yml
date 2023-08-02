@@ -52,3 +52,11 @@ autolabeler:
   - label: 'enhancement'
     branch:
       - '/feature\/.+/'
+  - label: 'github'
+    files:
+      - '.github/*'
+  - label: 'configuration'
+    files:
+      - '*.yaml'
+      - '*.json'
+      - '.env'
