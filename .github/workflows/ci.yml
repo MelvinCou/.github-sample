@@ -5,10 +5,6 @@ on:
   pull_request:
     branches: [main]
 
-concurrency:
-  group: ${{ github.ref }}-${{ github.workflow }}
-  cancel-in-progress: true
-
 jobs:
   update-pr-labels:
     name: Update pull request labels
@@ -32,7 +28,7 @@ jobs:
       # Give the default GITHUB_TOKEN write permission to commit and push, comment issues & post new PR
       # Remove the ones you do not need
       # contents: write
-      issues: write
+      pull-requests: write
     steps:
       # Git Checkout
       - name: Checkout Code
