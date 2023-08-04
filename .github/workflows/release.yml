@@ -1,19 +1,13 @@
 ---
-####################################
-####################################
-## Draft releases on Push to main ##
-####################################
-####################################
-name: Release Drafter
+name: Release
 
 ###########################
 # Start on push to main #
 ###########################
 on:
   push:
-    # branches to consider in the event; optional, defaults to all
-    branches:
-      - main
+    tags:
+      - '*'
 
 #################
 # Start the job #
@@ -25,7 +19,6 @@ jobs:
   update-release-draft:
     permissions:
       contents: write  # for release-drafter/release-drafter to create a github release
-      pull-requests: write  # for release-drafter/release-drafter to add label to PR
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:

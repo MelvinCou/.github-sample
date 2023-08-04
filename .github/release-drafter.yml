@@ -3,9 +3,10 @@ name-template: 'v$RESOLVED_VERSION'
 tag-template: 'v$RESOLVED_VERSION'
 template: |
   # Changelog
+  
   $CHANGES
 
-  See details of [all code changes](https://github.com/MelvinCou/files/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION) since previous release
+  **Full Changelog**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION
 
 categories:
   - title: '🚀 Features'
@@ -24,17 +25,38 @@ categories:
       - 'documentation'
   - title: '🏎 Performance'
     label: 'performance'
-change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
+
 version-resolver:
   major:
     labels:
-      - 'type: breaking'
+      - 'breaking'
   minor:
     labels:
-      - 'type: enhancement'
+      - 'enhancement'
   patch:
     labels:
-      - 'type: bug'
-      - 'type: maintenance'
-      - 'type: documentation'
+      - 'bug'
+      - 'maintenance'
+      - 'documentation'
   default: patch
+
+autolabeler:
+  - label: 'documentation'
+    files:
+      - '*.md'
+    branch:
+      - '/doc\/.+/'
+  - label: 'bug'
+    branch:
+      - '/fix\/.+/'
+  - label: 'enhancement'
+    branch:
+      - '/feature\/.+/'
+  - label: 'github'
+    files:
+      - '.github/**'
+  - label: 'configuration'
+    files:
+      - '*.yml'
+      - '**.json'
+      - '.env'
