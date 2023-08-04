@@ -3,7 +3,7 @@
 # See all available variables at https://megalinter.io/configuration/ and in linters documentation
 
 APPLY_FIXES: none
-LOG_LEVEL: WARNING
+LOG_LEVEL: INFO
 VALIDATE_ALL_CODEBASE: false
 
 # Reporters
