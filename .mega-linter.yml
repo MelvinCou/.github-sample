@@ -5,6 +5,8 @@
 APPLY_FIXES: none
 LOG_LEVEL: WARNING
 VALIDATE_ALL_CODEBASE: false
+# Formatter errors will be reported as errors (and not warnings) if this variable is set to false
+# FORMATTERS_DISABLE_ERRORS: false
 
 # Reporters
 EMAIL_REPORTER: false
