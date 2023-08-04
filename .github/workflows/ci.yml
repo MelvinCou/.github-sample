@@ -1,8 +1,9 @@
-name: CI
+---
+name: Continuous integration
 
 on:
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   update-pr-labels:
@@ -20,20 +21,41 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  lint:
-    name: Lint
+  build:
+    name: MegaLinter
     runs-on: ubuntu-latest
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push, comment issues & post new PR
+      # Remove the ones you do not need
+      # contents: write
+      pull-requests: write
     steps:
-      - name: Checkout code
+      # Git Checkout
+      - name: Checkout Code
         uses: actions/checkout@v3
         with:
-          # Full git history is needed to get a proper list of changed files within `super-linter`
-          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0 # If you use VALIDATE_ALL_CODEBASE = true, you can remove this line to improve performances
 
-      - name: Lint Code Base
-        uses: super-linter/super-linter/slim@v5
+      # MegaLinter GitHub Action
+      # More info at https://megalinter.io
+      - name: MegaLinter
+        id: ml
+        # You can override MegaLinter flavor used to have faster performances
+        # More info at https://megalinter.io/flavors/
+        uses: oxsecurity/megalinter/flavors/ci_light@v7.2.0
         env:
-          VALIDATE_ALL_CODEBASE: false
-          DEFAULT_BRANCH: main
-          # LOG_LEVEL: WARNING
+          # All available variables are described in documentation
+          # https://megalinter.io/configuration/
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # ADD YOUR CUSTOM ENV VARIABLES HERE OR DEFINE THEM IN A FILE .mega-linter.yml AT THE ROOT OF YOUR REPOSITORY
+
+      # Upload MegaLinter artifacts
+      - name: Archive production artifacts
+        if: ${{ success() }} || ${{ failure() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: MegaLinter reports
+          path: |
+            megalinter-reports
+            mega-linter.log
